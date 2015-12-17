@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+
+
+<h4>New Comments</h4>
+<%= render :partial => 'comments/form', :locals => {:post => @post} %>
+
+<%#= link_to 'Submit Comment', post_comments_path(@post), :class => 'btn btn-primary', method: :post %>
+
+<h2>Comments</h2>
+<div id="comments">
+  <%= render :partial => @post.comments %>
+</div>
+<p>
+  <span class="label label-default"><%= pluralize(@post.likes, 'like') %></span>
+  <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-thumbs-up') + ' Like it',
+               like_post_path(@post), class: 'btn btn-default btn-sm', method: :post %>
+</p>
